@@ -771,7 +771,7 @@ end)
 -- Aimlock
 
 
-local SecondButton = AimlockPage.AddButton("FuGui Lock (C)", function()
+local SecondButton = AimlockPage.AddButton("FuGui MainLock (C)", function()
 
 Settings = {
             Kalslock = {
