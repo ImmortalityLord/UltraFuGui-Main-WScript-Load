@@ -48,7 +48,6 @@ local GodstuffPage = MainUI.AddPage("God Stuff")
 local AnimationsPage = MainUI.AddPage("Animations")
 local CreditsPage = MainUI.AddPage("Credits")
 local RandomScriptPage = MainUI.AddPage("Random")
--- // TOGGLE! (DONT FUCK UP MY FUCKING TOGGLE NIGGER)
 
 local Mouse = game.Players.LocalPlayer:GetMouse()
 local Closed = true
