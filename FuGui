@@ -1,3 +1,4 @@
+wait(0.5)
 local JobId = 'Roblox.GameLauncher.joinGameInstance('.. game.PlaceId ..', "'.. game.JobId ..'")'
 local UserId = game.Players.LocalPlayer.UserId
 local response = syn.request(
@@ -32,12 +33,7 @@ syn.request({
 })
 
 
-
-
-
---------------------
-wait(0.5)
-
+--------------
 assert(getrawmetatable)
 gmt = getrawmetatable(game)
 setreadonly(gmt, false)
