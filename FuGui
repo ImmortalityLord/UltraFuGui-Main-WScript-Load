@@ -34,7 +34,9 @@ gmt.__namecall =
         return old(self, ...)
     end)
 
-game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "FuGui was founded by furdis70 in 2022", Icon = "rbxassetid://505845268", Duration = 10, Button1 = "W Script cus no Prem"})
+game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "FuGui was made by furdis70", Icon = "rbxassetid://10590477428", Duration = 10, Button1 = "W Script cus no Prem"})
+wait(0.7)
+game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "Btw Anticheat bypass is auto enable", Icon = "rbxassetid://", Duration = 10, Button1 = "Oki!"})
 
 local UILibrary = loadstring(game:HttpGet("https://pastebin.com/raw/1cah4RL2"))()
 
@@ -43,12 +45,11 @@ local MainPage = MainUI.AddPage("Main")
 local CombatPage = MainUI.AddPage("Combat")
 local teleportPage = MainUI.AddPage("Teleports")
 local AimlockPage = MainUI.AddPage("Aimlock")
-local FunstuffPage = MainUI.AddPage("Fun Stuff")
+local FunstuffPage = MainUI.AddPage("Fun Scripts")
 local GodstuffPage = MainUI.AddPage("God Stuff")
 local AnimationsPage = MainUI.AddPage("Animations")
-local CreditsPage = MainUI.AddPage("Credits")
 local RandomScriptPage = MainUI.AddPage("Random")
-
+--Toggle or smt idk
 local Mouse = game.Players.LocalPlayer:GetMouse()
 local Closed = true
 Mouse.KeyDown:connect(function(key)
@@ -64,7 +65,7 @@ if Closed == true then
     end
 end)
 
-local MainButton = MainPage.AddButton("Fly (X)", function()
+local MainButton = MainPage.AddButton("Fly [X]", function()
     local plr = game.Players.LocalPlayer
     local mouse = plr:GetMouse()
 
@@ -107,7 +108,7 @@ local MainButton = MainPage.AddButton("Fly (X)", function()
             localplayer.Character.Humanoid.PlatformStand=true
             local new=gyro.cframe - gyro.cframe.p + pos.position
             if not keys.w and not keys.s and not keys.a and not keys.d then
-                speed=7.5
+                speed=10
             end
             if keys.w then
                 new = new + workspace.CurrentCamera.CoordinateFrame.lookVector * speed
@@ -126,7 +127,7 @@ local MainButton = MainPage.AddButton("Fly (X)", function()
                 speed=speed+0
             end
             if speed>3.2 then
-                speed=7.5
+                speed=10
             end
             pos.position=new.p
             if keys.w then
@@ -141,7 +142,7 @@ local MainButton = MainPage.AddButton("Fly (X)", function()
         if pos then pos:Destroy() end
         flying=false
         localplayer.Character.Humanoid.PlatformStand=false
-        speed=7.5
+        speed=10
     end
     e1=mouse.KeyDown:connect(function(key)
         if not torso or not torso.Parent then flying=false e1:disconnect() e2:disconnect() return end
@@ -196,20 +197,39 @@ game.Players.LocalPlayer.Chatted:Connect(function(msg)
                 Block.Parent = char.BodyEffects.Movement
 end
 end)
-end)
-local MainButton = MainPage.AddButton("Mute All Bomboxes (forever)", function()
-game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "this will mute every radio in ur game until u leave/rejoin", Icon = "rbxassetid://..", Duration = 10, Button1 = "ok"})
-while wait() do 
-for _,v in pairs(game.Players:GetChildren()) do
-    if v.Character.LowerTorso:FindFirstChild("BOOMBOXSOUND") then
-        v:Destroy()
-    end
 end
-
-end
-end
-
 )
+
+local MainButton = MainPage.AddButton("Mute All Bomboxes (1 Time)", function()
+for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+                    if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                        pcall(function()
+                            if v.Character:FindFirstChild('LowerTorso'):FindFirstChild('BOOMBOXSOUND').Playing then
+                                v.Character:FindFirstChild('LowerTorso'):FindFirstChild('BOOMBOXSOUND'):Stop();
+                            end;
+                        end);
+                    end;
+                end;
+end)
+
+local FirstToggle = MainPage.AddToggle("Mute All Boomboxes", false, function(lol)
+    if lol == true then
+        game:GetService('RunService'):BindToRenderStep("mute", 0 , function()
+for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+                    if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                        pcall(function()
+                            if v.Character:FindFirstChild('LowerTorso'):FindFirstChild('BOOMBOXSOUND').Playing then
+                                v.Character:FindFirstChild('LowerTorso'):FindFirstChild('BOOMBOXSOUND'):Stop();
+                            end;
+                        end);
+                    end;
+                end;
+end)
+    elseif lol == false then
+        game:GetService('RunService'):UnbindFromRenderStep("mute")
+    end
+end)
+
 
 local MainButton = MainPage.AddButton("Free Animation Pack", function()
 
@@ -470,7 +490,7 @@ local MainButton = MainPage.AddButton("Free Animation Pack", function()
     end
     end)
 
-local MainButton = MainPage.AddButton("Korblox C", function()
+local MainButton = MainPage.AddButton("Korblox Client", function()
 	local ply = game.Players.LocalPlayer
 		local chr = ply.Character
 		chr.RightLowerLeg.MeshId = "902942093"
@@ -480,7 +500,7 @@ local MainButton = MainPage.AddButton("Korblox C", function()
 		chr.RightFoot.MeshId = "902942089"
 		chr.RightFoot.Transparency = "1"
 end)
-local MainButton = MainPage.AddButton("Headless C", function()
+local MainButton = MainPage.AddButton("Headless Client", function()
     game.Players.LocalPlayer.Character.Head.Transparency = 1
     game.Players.LocalPlayer.Character.Head.Transparency = 1
     for i,v in pairs(game.Players.LocalPlayer.Character.Head:GetChildren()) do
@@ -491,7 +511,7 @@ local MainButton = MainPage.AddButton("Headless C", function()
 end)
 
 
-local antibag = MainPage.AddButton("Anti-Bag", function()
+local antibag = MainPage.AddButton("Anti Bag", function()
     local LP = game.Players.LocalPlayer;
 
     for i,v in ipairs(LP.Character:GetDescendants()) do
@@ -527,10 +547,10 @@ local MainButton = MainPage.AddButton("Ungrab", function()
         game.Players.LocalPlayer.Character.Humanoid:ChangeState(3)
     end
 end)
-local MainButton = MainPage.AddButton("Rejoin", function()
+local MainButton = MainPage.AddButton("Rejoin Server", function()
     game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
 end)
-local Serverhop = MainPage.AddButton("ServerHop", function()
+local Serverhop = MainPage.AddButton("ServerHoping", function()
     local x = {}
 	for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
 	   	if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
@@ -542,7 +562,7 @@ local Serverhop = MainPage.AddButton("ServerHop", function()
 	end
 end)
 
-local FirstToggle = MainPage.AddToggle("Anti-Stomp", false, function(x)
+local FirstToggle = MainPage.AddToggle("Anti Stomp", false, function(x)
     if x == true then
         game:GetService('RunService'):BindToRenderStep("Anti-Stomp", 0 , function()
             if game.Players.LocalPlayer.Character.Humanoid.Health <= 5 then
@@ -563,7 +583,7 @@ local FirstToggle = MainPage.AddToggle("Anti-Stomp", false, function(x)
     end
 end)
 
-local FirstToggle = CombatPage.AddToggle("Anti-Slow", false, function(gh)
+local FirstToggle = CombatPage.AddToggle("Anti Slow", false, function(gh)
     if gh == true then
         game:GetService('RunService'):BindToRenderStep("Anti-Slow", 0 , function()
             if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed"):Destroy() end
@@ -576,7 +596,7 @@ local FirstToggle = CombatPage.AddToggle("Anti-Slow", false, function(gh)
     end
 end)
 
-local FirstToggle = CombatPage.AddToggle("Fist Reach", false, function(e)
+local FirstToggle = CombatPage.AddToggle("Hand Reach", false, function(e)
     if e == true then
         game:GetService('RunService'):BindToRenderStep("Reach", 0 , function()
             local success, err = pcall(function()
@@ -604,7 +624,7 @@ local FirstToggle = CombatPage.AddToggle("Fist Reach", false, function(e)
         game:GetService('RunService'):UnbindFromRenderStep("Reach")
     end
 end)
-local FirstToggle = CombatPage.AddToggle("Tool Reach", function()
+local FirstToggle = CombatPage.AddToggle("Tool Reach", false, function()
     for i, v in pairs(game:GetService"Players".LocalPlayer.Character:GetChildren()) do
         if v:isA("Tool") then
             local a = Instance.new("SelectionBox", v.Handle)
@@ -615,7 +635,7 @@ local FirstToggle = CombatPage.AddToggle("Tool Reach", function()
         end
     end
 end)
-local FirstToggle = CombatPage.AddToggle("Auto-Reload", false, function(r)
+local FirstToggle = CombatPage.AddToggle("Auto Reload Guns", false, function(r)
     if r == true then
         game:GetService('RunService'):BindToRenderStep("Auto-Reload", 0 , function()
             if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool") then
@@ -708,43 +728,51 @@ local FirstButton = CombatPage.AddButton("No Recoil", function()
     newcam.HeadScale = 1 
 end)
 
----------------
--- Teleports
 local SecondButton = teleportPage.AddButton("Admin Base", function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-797.15, -39.6189, -887.957)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-870.135742, -39.6542168, -885.997192, 0.0188848507, -1.08110895e-10, 0.999821663, -8.92374889e-12, 1, 1.08298731e-10, -0.999821663, -1.09673624e-11, 0.0188848507)
 end)
-local SecondButton = teleportPage.AddButton("Food Shop Bank", function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-335.141, 23.7129, -298.029)
+local SecondButton = teleportPage.AddButton("Food Shop 1", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-353.118164, 21.7499943, -298.216278, -0.0062559233, 4.24379252e-08, 0.99998045, 2.34063946e-09, 1, -4.24241122e-08, -0.99998045, 2.0751918e-09, -0.0062559233)
 end)
-local SecondButton = teleportPage.AddButton("Food Shop Uphill", function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(298.477, 49.3129, -615.231)
+local SecondButton = teleportPage.AddButton("Food Shop 2", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(298.879211, 48.0140572, -598.241882, -0.999685049, 1.00381028e-08, -0.0250952411, 7.99202038e-09, 1, 8.16329973e-08, 0.0250952411, 8.14067249e-08, -0.999685049)
 end)
-local SecondButton = teleportPage.AddButton("Food Shop Taco", function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(583.96, 51.0917, -479.596)
+local SecondButton = teleportPage.AddButton("Food Shop 3", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(534.285339, 51.0614052, -494.219177, 0.0125494357, 8.95531471e-08, -0.999921262, 2.29394761e-08, 1, 8.98481005e-08, 0.999921262, -2.4065212e-08, 0.0125494357)
 end)
-local SecondButton = teleportPage.AddButton("Food Shop Hamburger", function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-279.501, 22.6801, -803.887)
+local SecondButton = teleportPage.AddButton("Food Shop 4", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(534.285339, 51.0614052, -494.219177, 0.0125494357, 8.95531471e-08, -0.999921262, 2.29394761e-08, 1, 8.98481005e-08, 0.999921262, -2.4065212e-08, 0.0125494357)
 end)
-local SecondButton = teleportPage.AddButton("Gun Shop Uphill", function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(481.925, 48.1008, -621.23)
+local SecondButton = teleportPage.AddButton("Food Shop Admin ", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-787.7854, -39.6492119, -933.954773, 0.999980092, 5.42915011e-08, 0.00631429348, -5.40910747e-08, 1, -3.19123927e-08, -0.00631429348, 3.15702096e-08, 0.999980092)
 end)
-local SecondButton = teleportPage.AddButton("Gun Shop Down", function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-580.27, 8.34504, -734.832)
+local SecondButton = teleportPage.AddButton("Gun Shop 1", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(481.707184, 48.0049896, -607.25531, 0.999290884, -1.23740964e-08, 0.0376520008, 1.22516113e-08, 1, 3.48381346e-09, -0.0376520008, -3.02004532e-09, 0.999290884)
+end)
+local SecondButton = teleportPage.AddButton("Gun Shop 2", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-568.860901, 7.9998455, -736.041748, -0.012570627, -7.56101741e-08, 0.999920964, 5.07967464e-08, 1, 7.6254743e-08, -0.999920964, 5.17513037e-08, -0.012570627)
+end)
+local SecondButton = teleportPage.AddButton("Gun Shop Admin 1", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-872.548645, -32.6492119, -532.776306, -0.99998033, 8.96814456e-10, -0.00627436768, 6.73835931e-10, 1, 3.5540122e-08, 0.00627436768, 3.55351943e-08, -0.99998033)
+end)
+local SecondButton = teleportPage.AddButton("Gun Shop Admin 2", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-808.970642, -39.6492157, -932.983887, 0.999979556, 5.9812808e-09, 0.00639432203, -5.76606984e-09, 1, -3.36749721e-08, -0.00639432203, 3.36374164e-08, 0.999979556)
 end)
 local SecondButton = teleportPage.AddButton("Bank", function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-438.689, 39.0127, -284.731)
-end)
-local SecondButton = teleportPage.AddButton("Police Station", function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-263.919, 21.8302, -112.858)
-end)
-local SecondButton = teleportPage.AddButton("Fire Department", function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-129.534, 27.842, -113.062)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-485.356049, 23.1079617, -285.29599, -0.0313248262, -5.62390845e-08, -0.999509275, 4.92920771e-09, 1, -5.64211788e-08, 0.999509275, -6.69417233e-09, -0.0313248262)
 end)
 local SecondButton = teleportPage.AddButton("Church", function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(205.53, 21.7803, -80.2361)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(205.306122, 23.7549973, -66.9710083, -1, -4.02461398e-09, -9.37520526e-05, -4.0222452e-09, 1, -2.52649812e-08, 9.37520526e-05, -2.52646046e-08, -1)
+wait(0.5)
+local Animation = Instance.new("Animation")
+Animation.AnimationId = "rbxassetid://3487719500"
+local LoadAnimation = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):LoadAnimation(Animation)
+LoadAnimation.Looped = false
+LoadAnimation.Priority = Enum.AnimationPriority.Action
+LoadAnimation:Play()
 end)
 local SecondButton = teleportPage.AddButton("Casino", function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-904.457, 24.7803, -156.994)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-866.04303, 21.7499943, -160.834824, -0.999503493, -7.72168285e-09, -0.0315081365, -5.90528204e-09, 1, -5.77416799e-08, 0.0315081365, -5.75269468e-08, -0.999503493)
 end)
 local SecondButton = teleportPage.AddButton("Da Water Top", function()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-669.642517, 153.890869, -649.326538, -0.995563924, 4.00205131e-08, -0.0940877944, 4.89362222e-08, 1, -9.2452197e-08, 0.0940877944, -9.66463745e-08, -0.995563924)
@@ -1331,6 +1359,13 @@ getgenv().AimPart = "HumanoidRootPart"
             
 end)
 
+local MainButton = GodstuffPage.AddButton("Skinny godmode (u cant use tools)", function()
+game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "u cant use any tools now reset to ungodmode", Icon = "rbxassetid://10590477428", Duration = 10, Button1 = "ok sir."})
+wait(3)
+game.Players.LocalPlayer.Character.BodyEffects["K.O"]:Destroy()
+game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "Done", Icon = "rbxassetid://10590477428", Duration = 10, Button1 = "WWWW"})
+
+end)
            
 local MainButton = GodstuffPage.AddButton("Full God", function()
         local localPlayer = game:GetService('Players').LocalPlayer;
@@ -1350,6 +1385,28 @@ local MainButton = GodstuffPage.AddButton("Full God", function()
                 game.Players.LocalPlayer.Character:WaitForChild("BodyEffects")
                 game.Players.LocalPlayer.Character.BodyEffects.BreakingParts:Destroy()
 
+end)
+
+local MainButton = GodstuffPage.AddButton("God v3 (Rejoin)", function()
+	game.StarterGui:SetCore("SendNotification", {
+
+		Title = 'FuGui';
+		Text = 'Script copied to ur keyboard execute it while u have force field';
+		Duration = 20;
+
+	})
+	
+wait(2)
+	
+	game.StarterGui:SetCore("SendNotification", {
+
+		Title = 'FuGui';
+		Text = 'or if u dont understand execute in the blue bubble';
+		Duration = 20;
+
+	})
+wait(3)
+setclipboard("https://pastebin.com/raw/p8RYSDZB")
 end)
 
 local MainButton = GodstuffPage.AddButton("Melee God", function()
@@ -1587,8 +1644,8 @@ local SecondButton = FunstuffPage.AddButton("Heart", function()
     game.Players.LocalPlayer.PlayerGui:WaitForChild("MainScreenGui"):WaitForChild("Bar"):WaitForChild("HP"):WaitForChild("Picture"):WaitForChild("Life").Visible = true
 end)
 
-local SecondButton = FunstuffPage.AddButton("Dio tp (C) [BOOMBOX]", function()
-game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "you will need boombox for cool sounds.", Icon = "rbxassetid://..", Duration = 10, Button1 = "ok"})
+local SecondButton = FunstuffPage.AddButton("Dio tp (C) [Boombox]", function()
+game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "u need boombox gamepass for cool sounds", Icon = "rbxassetid://10590477428", Duration = 10, Button1 = "ok sir."})
 wait(0.1)
 if not game['Loaded'] or not game:GetService('Players')['LocalPlayer'] then
     game['Loaded']:Wait();
@@ -1675,7 +1732,7 @@ end
 end)
 end)
 local SecondButton = FunstuffPage.AddButton("AdminFly (Glide)", function()
-game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "you will need boombox for cool sounds.", Icon = "rbxassetid://..", Duration = 10, Button1 = "ok"})
+game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "you will need boombox for the sounds.", Icon = "rbxassetid://6403436054", Duration = 10, Button1 = "ok"})
 wait(0.2)
 local FlyMode = "Glide" -- Glide, Shazam
 	local OriginalKeyUpValue = 0
@@ -1887,7 +1944,7 @@ function Fly()
     Fly()
 end)
 local SecondButton = FunstuffPage.AddButton("AdminFly (Shazam)", function()
-game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "you will need boombox for cool sounds.", Icon = "rbxassetid://..", Duration = 10, Button1 = "ok"})
+game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "you will need boombox for the sounds.", Icon = "rbxassetid://7371693428", Duration = 10, Button1 = "ok"})
 wait(0.1)
 local FlyMode = "Shazam" -- Glide, Shazam
 	local OriginalKeyUpValue = 0
@@ -2145,10 +2202,10 @@ local outfit = Instance.new("Tool", game.Players.LocalPlayer.Backpack)
         tool.Unequipped:connect(function()
             u3 = false
 end)
-end
-)
-local SecondButton = FunstuffPage.AddButton("Skull Kid Laugh", (z), function()
-game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "you will need boombox for cool sounds.", Icon = "rbxassetid://..", Duration = 10, Button1 = "ok"})
+end)
+
+local SecondButton = FunstuffPage.AddButton("Skull Kid Laugh (Z) [Boombox]", function()
+game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "you will need boombox for this script.", Icon = "rbxassetid://8517942511", Duration = 10, Button1 = "ok"})
 wait(0.2)
 if not game['Loaded'] or not game:GetService('Players')['LocalPlayer'] then
     game['Loaded']:Wait();
@@ -2224,7 +2281,7 @@ end
 end)
 end)
 local SecondButton = FunstuffPage.AddButton("Laugh (T) [Boombox]", function()
-game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "you will need boombox for cool sounds.", Icon = "rbxassetid://..", Duration = 10, Button1 = "ok"})
+game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "you will need boombox for the sounds.", Icon = "rbxassetid://8517942511", Duration = 10, Button1 = "ok"})
 wait(0.2)
 if not game['Loaded'] or not game:GetService('Players')['LocalPlayer'] then
     game['Loaded']:Wait();
@@ -2301,7 +2358,7 @@ end)
 end
 )
 local SecondButton = FunstuffPage.AddButton("Vine BOOM (X) [Boombox]", function()
-game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "you will need boombox for cool sounds.", Icon = "rbxassetid://..", Duration = 10, Button1 = "ok"})
+game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "you will need boombox for cool sounds.", Icon = "rbxassetid://8425069718", Duration = 10, Button1 = "ok"})
 wait(0.2)
 if not game['Loaded'] or not game:GetService('Players')['LocalPlayer'] then
     game['Loaded']:Wait();
@@ -2378,7 +2435,7 @@ end)
 end
 )
 local SecondButton = FunstuffPage.AddButton("Super Jump (H) [Boombox]", function()
-game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "you will need boombox for cool sounds.", Icon = "rbxassetid://..", Duration = 10, Button1 = "ok"})
+game.StarterGui:SetCore("SendNotification", {Title = "FuGui", Text = "you will need boombox for cool sounds.", Icon = "rbxassetid://9324033510", Duration = 10, Button1 = "ok"})
 wait(0.2)
 local  gj = "\68\120\115\107\84\105\108\73\68\97\119\110" local sg = false getgenv().Toggled = false local l = game:GetService("\85\115\101\114\73\110\112\117\116\83\101\114\118\105\99\101") l.InputBegan:connect(function(fn,qf) if fn.UserInputType == Enum.UserInputType.Keyboard then if fn.KeyCode == Enum.KeyCode.H then if l:GetFocusedTextBox() == nil then if getgenv().Toggled == false then getgenv().Toggled = true else getgenv().Toggled = true end;end;end;end;end) local rl = game:GetService("\80\108\97\121\101\114\115").LocalPlayer local pr = rl.Character:WaitForChild("\72\117\109\97\110\111\105\100"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.Roll) local cp = 0 local tc = Instance.new("\65\110\105\109\97\116\105\111\110" ) tc.AnimationId = "\114\98\120\97\115\115\101\116\105\100\58\47\47\50\55\56\56\50\57\48\50\55\48" local _t = Instance.new("\65\110\105\109\97\116\105\111\110", game.Workspace) _t.Name = "\72\111\118\101\114" _t.AnimationId = "\114\98\120\97\115\115\101\116\105\100\58\47\47\54\57\56\50\53\49\54\53\51" local b_t = Instance.new("\65\110\105\109\97\116\105\111\110",  game.ReplicatedStorage.ClientAnimations)b_t.Name = "\76\101\102\116\80\117\110\99\104" b_t.AnimationId = "\114\98\120\97\115\115\101\116\105\100\58\47\47\50\55\56\56\51\48\56\54\54\49" local nb_ = rl.Character:WaitForChild("\72\117\109\97\110\111\105\100"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.LeftPunch) local fnb = Instance.new("\83\99\114\101\101\110\71\117\105") local qfn = game.Players.LocalPlayer.Character.Humanoid fnb.Parent = game.CoreGui local oq = nil local koq = nil local ik = nil local hi = false local dhi = Instance.new("\65\110\105\109\97\116\105\111\110", game.ReplicatedStorage.ClientAnimations) dhi.AnimationId = "\114\98\120\97\115\115\101\116\105\100\58\47\47\53\48\55\55\55\48\52\53\51" local edh = Instance.new("\65\110\105\109\97\116\105\111\110", game.ReplicatedStorage.ClientAnimations) edh.Name = "\85\110\109\97\115\107" edh.AnimationId = "\114\98\120\97\115\115\101\116\105\100\58\47\47\51\51\56\48\54\50\57\50\51\50" local med = Instance.new("\65\110\105\109\97\116\105\111\110", game.ReplicatedStorage.ClientAnimations) med.Name = "\77\97\115\107" med.AnimationId = "\114\98\120\97\115\115\101\116\105\100\58\47\47\51\51\56\48\54\50\55\54\57\50" local jme = rl.Character:WaitForChild("\72\117\109\97\110\111\105\100"):LoadAnimation(dhi) jme.Looped = true jme.Priority = Enum.AnimationPriority.Action local gjm = Instance.new("\65\110\105\109\97\116\105\111\110", game.ReplicatedStorage.ClientAnimations) gjm.AnimationId = "\114\98\120\97\115\115\101\116\105\100\58\47\47\50\53\49\48\49\57\56\52\55\53" local sgj = Instance.new("\65\110\105\109\97\116\105\111\110", game.ReplicatedStorage.ClientAnimations) sgj.AnimationId = "\114\98\120\97\115\115\101\116\105\100\58\47\47\53\48\55\55\54\54\51\56\56" local ls = rl.Character local rls = rl.Character:WaitForChild("\72\117\109\97\110\111\105\100"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.Mask) local prl = rl.Character:WaitForChild("\72\117\109\97\110\111\105\100"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.Unmask) function n() local cpr = coroutine.wrap(function() local tcp = workspace.Camera for dh = 1, 20 do game.TweenService:Create(tcp, TweenInfo.new(0.5), {FieldOfView = 8*dh}):Play() wait(0.01) end for dh = 1, 20 do game.TweenService:Create(tcp, TweenInfo.new(0.5), {FieldOfView = 160-dh*4.5}):Play() wait(0.01) end end) cpr() end local _tc = false local function b() for dh, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do if v.Name == "\79\114\105\103\105\110\97\108\80\111\115\105\116\105\111\110" then v:Destroy() elseif v.Name == "\79\114\105\103\105\110\97\108\83\105\122\101" then v:Destroy() elseif v.Name == "\65\118\97\116\97\114\80\97\114\116\83\99\97\108\101\84\121\112\101" then v:Destroy() end end end function f() if game.Lighting:FindFirstChild("\69\82\65\83\69") == nil then local nb_t = Instance.new("\83\111\117\110\100", fnb) nb_t.Volume = 0.1 nb_t.Name = "\69\82\65\83\69" nb_t.Looped = true nb_t.SoundId = "\114\98\120\97\115\115\101\116\105\100\58\47\47\51\49\54\55\48\57\50\57\53\57" nb_t:Play() game.Lighting.Sky.Parent = workspace game:GetObjects("\114\98\120\97\115\115\101\116\105\100\58\47\47\54\53\52\54\49\49\51\50\50\54")[1].Parent=game.Lighting else workspace.Sky.Parent = game.Lighting fnb:FindFirstChild("\69\82\65\83\69"):Destroy() game.Lighting:FindFirstChild("\69\82\65\83\69"):Destroy() end end function q() local nb_t = Instance.new("\83\111\117\110\100", fnb) nb_t.Volume = 0.1 nb_t.SoundId = "\114\98\120\97\115\115\101\116\105\100\58\47\47\54\53\52\54\49\50\56\49\55\53" nb_t:Play() local fnb_ = Instance.new("\73\109\97\103\101\76\97\98\101\108", fnb) fnb_.Image = "\104\116\116\112\58\47\47\119\119\119\46\114\111\98\108\111\120\46\99\111\109\47\97\115\115\101\116\47\63\105\100\61\54\53\52\54\48\52\51\55\52\54" fnb_.BackgroundTransparency = 1 fnb_.AnchorPoint = Vector2.new(0.5, 0.5) fnb_.Size = UDim2.fromScale(1, 1) fnb_.Position = UDim2.fromScale(-0.5, 0.5) delay(0, function() for dh = 0, 1, 0.1 do fnb_.Position = UDim2.fromScale(-fnb_.Position.X.Scale+dh, 0.5) fnb_.ImageTransparency = fnb_.ImageTransparency+dh wait(.01) end fnb_:Destroy() nb_t:Destroy() end) end function o() if workspace:FindFirstChild(rl.Name.."\83\116\114\105\110\103\75\79\68") == nil then local qfnb = Instance.new("\77\111\100\101\108", workspace) qfnb.Name = rl.Name.."\83\116\114\105\110\103\75\79\68" ls.Humanoid:UnequipTools() for dh, v in pairs(ls:GetChildren()) do  if (v:IsA("\66\97\115\101\80\97\114\116")  or v:IsA("\77\101\115\104\80\97\114\116")) and v.Parent:FindFirstChildOfClass("\72\117\109\97\110\111\105\100") and v.Name ~= "\72\117\109\97\110\111\105\100\82\111\111\116\80\97\114\116" then local oqf = v:Clone() oqf.Parent = qfnb oqf.Name = v.Name oqf.Material = Enum.Material.ForceField oqf.CFrame = v.CFrame oqf.Transparency = 0.5  oqf.BrickColor = BrickColor.Blue() oqf.CanCollide = false oqf.Anchored = true for dh, v  in pairs(oqf:GetChildren()) do  if v.ClassName ~= "\83\112\101\99\105\97\108\77\101\115\104" then v:Destroy() end end end end local koqf = game:GetObjects("\114\98\120\97\115\115\101\116\105\100\58\47\47\54\53\52\55\48\53\53\53\48\48")[1] koqf.Parent = qfnb koqf.Name = "\73\100\97\114\111" workspace.Camera.CameraSubject = koqf.Humanoid oq = ls.HumanoidRootPart.CFrame hi = true koqf.HumanoidRootPart.CFrame = oq ik = koqf:WaitForChild("\72\117\109\97\110\111\105\100"):LoadAnimation(sgj) ik.Looped = true ik.Priority = Enum.AnimationPriority.Action koq = koqf:WaitForChild("\72\117\109\97\110\111\105\100"):LoadAnimation(gjm) koq.Looped = true koq.Priority = Enum.AnimationPriority.Action _tc = true ik:Play() else hi = false _tc = false workspace.Camera.CameraSubject =  ls.Humanoid ls.HumanoidRootPart.CFrame =  workspace:FindFirstChild(rl.Name.."\83\116\114\105\110\103\75\79\68").Idaro.HumanoidRootPart.CFrame workspace:FindFirstChild(rl.Name.."\83\116\114\105\110\103\75\79\68"):Destroy() end end function k() local nb_tc = ls.Humanoid:LoadAnimation(tc) nb_tc:Play() nb_tc.TimePosition = 0.15 nb_tc.Looped = false nb_tc:AdjustSpeed(1.1) end function i(h, d) d.HumanoidRootPart.Velocity = d.HumanoidRootPart.Velocity+h end local hik = false function e() if hik == false then return false else return true end end local dhik = rl:GetMouse() local ed = Vector3.new(0,0,0) local medh = 0  local jmed = 0 local gjme = 0 function m() if ik and koq.IsPlaying and medh == 0 and jmed == 0 and gjme == 0 then ik:Play() koq:Stop() end end function j() if koq and ik.IsPlaying then ik:Stop() koq:Play() end end dhik.KeyDown:Connect(function(ko) if workspace:FindFirstChild(rl.Name.."\83\116\114\105\110\103\75\79\68") then if ko == "\119" then medh = -1 j() elseif ko == "\97" then jmed = -1 j() elseif ko == "\100" then jmed = 1 j() elseif ko == "\115" then medh = 1 j() end end end) dhik.KeyUp:Connect(function(ko) if ko == "\119" then medh = 0 m() elseif ko == "\97" then jmed = 0 m() elseif ko == "\100" then jmed = -0 m() elseif ko == "\115" then medh = 0 m() end end) local sgjm = false local lsg = game:GetService("\85\115\101\114\73\110\112\117\116\83\101\114\118\105\99\101") lsg.InputBegan:Connect(function(dh, nb_tc) if dh.KeyCode == Enum.KeyCode.H and nb_tc == false then if sg == false then sg = true elseif sg == true then sg = false end end end) lsg.InputBegan:Connect(function(dh, nb_tc) if dh.KeyCode == Enum.KeyCode.Space and nb_tc == false then if workspace:FindFirstChild(rl.Name.."\83\116\114\105\110\103\75\79\68") == nil then if e() == true and not jme.IsPlaying then i(ls.HumanoidRootPart.CFrame.LookVector*150, ls) hik = false pr:Stop() sgjm = true p(6543434995, true, true) k() repeat wait() until workspace:FindPartOnRayWithWhitelist(Ray.new(ls.HumanoidRootPart.Position, Vector3.new(0, -4 * ls.HumanoidRootPart.Size.y, 0)), { workspace.MAP }) sgjm = false end else workspace:FindFirstChild(rl.Name.."\83\116\114\105\110\103\75\79\68"):FindFirstChild("\73\100\97\114\111").Humanoid:ChangeState(3) end end end) function g() ls.LowerTorso.BOOMBOXSOUND:Stop() end function s(c, r) local cprl = coroutine.wrap(function() wait(ls.LowerTorso.BOOMBOXSOUND.TimeLength-0) if ls.LowerTorso.BOOMBOXSOUND.SoundId == "\114\98\120\97\115\115\101\116\105\100\58\47\47"..c and cp == r then g() end end) cprl() end function p(c, t, _) if rl.Backpack:FindFirstChild("\91\66\111\111\109\98\111\120\93") then local prls = nil if ls:FindFirstChildOfClass("\84\111\111\108") and _ == true then prls = ls:FindFirstChildOfClass("\84\111\111\108") ls:FindFirstChildOfClass("\84\111\111\108").Parent = rl.Backpack end rl.Backpack["\91\66\111\111\109\98\111\120\93"].Parent = ls game.ReplicatedStorage.MainEvent:FireServer("\66\111\111\109\98\111\120", c) ls["\91\66\111\111\109\98\111\120\93"].RequiresHandle = false if ls["\91\66\111\111\109\98\111\120\93"]:FindFirstChild("\72\97\110\100\108\101") then ls["\91\66\111\111\109\98\111\120\93"].Handle:Destroy() end ls["\91\66\111\111\109\98\111\120\93"].Parent = rl.Backpack rl.PlayerGui.MainScreenGui.BoomboxFrame.Visible = false if prls ~= true then if prls then prls.Parent = ls end end if t == true then ls.LowerTorso:WaitForChild("\66\79\79\77\66\79\88\83\79\85\78\68") local cprl = coroutine.wrap(function() repeat wait() until ls.LowerTorso.BOOMBOXSOUND.SoundId == "\114\98\120\97\115\115\101\116\105\100\58\47\47"..c and ls.LowerTorso.BOOMBOXSOUND.TimeLength > 0 cp = cp+1 s(c, cp) end) cprl() end end end local tcpr = false local _tcp, CanCel = "\84\105\109\101\32\115\116\111\112\33", "\84\105\109\101\32\114\101\115\117\109\101\33" local b_tc, TimeResume = "\84\105\109\101\32\115\116\111\112\33", "\84\105\109\101\32\115\116\111\112\33" local nb_tc = false rl.Chatted:Connect(function(me) if me == "\82\97\103\101\33" then if qfn:FindFirstChild("\72\101\97\100\83\99\97\108\101") then b() wait(0.6) qfn:FindFirstChild("\72\101\97\100\83\99\97\108\101"):Destroy() wait(0.6) end if qfn:FindFirstChild("\66\111\100\121\87\105\100\116\104\83\99\97\108\101") then b() wait(0.6) qfn:FindFirstChild("\66\111\100\121\87\105\100\116\104\83\99\97\108\101"):Destroy() wait(0.6) end if qfn:FindFirstChild("\66\111\100\121\68\101\112\116\104\83\99\97\108\101") then b() wait(0.6) qfn:FindFirstChild("\66\111\100\121\68\101\112\116\104\83\99\97\108\101"):Destroy() wait(0.6) end if qfn:FindFirstChild("\66\111\100\121\84\121\112\101\83\99\97\108\101") then b() wait(0.6) qfn:FindFirstChild("\66\111\100\121\84\121\112\101\83\99\97\108\101"):Destroy() wait(0.6) end elseif me:sub(1, 11) == _tcp and nb_tc == false and not jme.IsPlaying then b_(nb_tc) elseif me == CanCel and nb_tc == true and not jme.IsPlaying then b_(nb_tc) elseif me == b_tc then p(6947054675, true, true) wait(0.3) ls.LowerTorso.BOOMBOXSOUND.SoundId = "\104\116\116\112\58\47\47\119\119\119\46\114\111\98\108\111\120\46\99\111\109\47\97\115\115\101\116\47\63\105\100\61\119\100" wait(0.1) p(7084712646, true, true) end end) function b_(nb) if nb == false then nb_tc = true p(4786770367, true, true) wait(2) q() n() f() o() else nb_tc = false hi = false wait(0.1) p(4463896146, true, true) q() o() f() n() end end function Jump(...) (...).Jumping:Connect(function() if sg == true then if sgjm == false and not jme.IsPlaying then sgjm = true delay(1, function() sgjm = false end) pr:Play(0, 1, 1.4) i(ls.HumanoidRootPart.CFrame.UpVector*120, ls) p(8296182640, true, true) delay(0, function() hik = true wait(1)  if hik == true then hik = false end end) end end end) end Jump(ls.Humanoid) rl.CharacterAdded:Connect(function(jm) wait(1) if jm.Name == rl.Name then Jump(jm.Humanoid) jme = jm:WaitForChild("\72\117\109\97\110\111\105\100"):LoadAnimation(dhi) jme.Looped = true jme.Priority = Enum.AnimationPriority.Action pr = jm:WaitForChild("\72\117\109\97\110\111\105\100"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.Roll) ls = jm end end) game["\82\117\110\32\83\101\114\118\105\99\101"].Heartbeat:Connect(function() if hi then for dh, v in pairs(ls:GetChildren()) do if v:IsA("\66\97\115\101\80\97\114\116") then v.CFrame = CFrame.new(math.random(200, 500), math.random(200, 500), math.random(200, 500)) v.Velocity = Vector3.new(0,0,0) end end if ls:FindFirstChild("\67\111\109\98\97\116") and nb_tc == true then nb_tc = false b_(true) end if _tc == true then ed = Vector3.new(jmed, gjme, medh) workspace:FindFirstChild(rl.Name.."\83\116\114\105\110\103\75\79\68"):FindFirstChild("\73\100\97\114\111").Humanoid:Move(ed, true) end else if ls:FindFirstChild("\91\70\108\97\115\104\108\105\103\104\116\93") then if workspace.Players:FindFirstChild(gj) then if not jme.IsPlaying then jme:Play() jme:AdjustSpeed(0) jme.TimePosition = 1.2 end local fnb_t = workspace.Players:FindFirstChild(gj).HumanoidRootPart.CFrame * CFrame.new(0, 0.5, 1.25) ls.HumanoidRootPart.CFrame = fnb_t end else if jme.IsPlaying then jme:Stop() end end end end)
 end
@@ -2695,3 +2752,302 @@ end
 
 end
 )
+local FirstToggle = FunstuffPage.AddToggle("Fling Knocked Players", false, function(j)
+    if j == true then
+        game:GetService('RunService'):BindToRenderStep("fling", 0 , function()
+_G.Number = 500;
+
+    pcall(function()
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                if v.Character:FindFirstChild('BodyEffects'):FindFirstChild('K.O') then
+                    for _, v in pairs(v.Character:GetChildren()) do
+                        if v:IsA('BasePart') then
+                            v.Velocity = Vector3.new(_G.Number, _G.Number, _G.Number);
+                        end
+                    end;
+                end;
+            end;
+        end;
+    end);
+end)
+    elseif j == false then
+        game:GetService('RunService'):UnbindFromRenderStep("fling")
+    end
+end)
+local SecondButton = RandomScriptPage.AddButton("-Controll knocked Player-", function()
+end)
+local SecondButton = RandomScriptPage.AddButton("up", function()
+    pcall(function()
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                if v.Character:FindFirstChild('BodyEffects'):FindFirstChild('K.O') then
+                    for _, v in pairs(v.Character:GetChildren()) do
+                        if v:IsA('BasePart') then
+                            v.Velocity = Vector3.new(0,60,0);
+                        end
+                    end;
+                end;
+            end;
+        end;
+    end);
+end)
+local SecondButton = RandomScriptPage.AddButton("Down", function()
+    pcall(function()
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                if v.Character:FindFirstChild('BodyEffects'):FindFirstChild('K.O') then
+                    for _, v in pairs(v.Character:GetChildren()) do
+                        if v:IsA('BasePart') then
+                            v.Velocity = Vector3.new(0,-300,0);
+                        end
+                    end;
+                end;
+            end;
+        end;
+    end);
+end)
+local SecondButton = RandomScriptPage.AddButton("Left", function()
+    pcall(function()
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                if v.Character:FindFirstChild('BodyEffects'):FindFirstChild('K.O') then
+                    for _, v in pairs(v.Character:GetChildren()) do
+                        if v:IsA('BasePart') then
+                            v.Velocity = Vector3.new(0,1,15);
+                        end
+                    end;
+                end;
+            end;
+        end;
+    end);
+end)
+local SecondButton = RandomScriptPage.AddButton("Left Harder", function()
+    pcall(function()
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                if v.Character:FindFirstChild('BodyEffects'):FindFirstChild('K.O') then
+                    for _, v in pairs(v.Character:GetChildren()) do
+                        if v:IsA('BasePart') then
+                            v.Velocity = Vector3.new(0,4,30);
+                        end
+                    end;
+                end;
+            end;
+        end;
+    end);
+end)
+local SecondButton = RandomScriptPage.AddButton("Right", function()
+    pcall(function()
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                if v.Character:FindFirstChild('BodyEffects'):FindFirstChild('K.O') then
+                    for _, v in pairs(v.Character:GetChildren()) do
+                        if v:IsA('BasePart') then
+                            v.Velocity = Vector3.new(0,1,-15);
+                        end
+                    end;
+                end;
+            end;
+        end;
+    end);
+end)
+local SecondButton = RandomScriptPage.AddButton("Right Harder", function()
+    pcall(function()
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                if v.Character:FindFirstChild('BodyEffects'):FindFirstChild('K.O') then
+                    for _, v in pairs(v.Character:GetChildren()) do
+                        if v:IsA('BasePart') then
+                            v.Velocity = Vector3.new(0,4,-30);
+                        end
+                    end;
+                end;
+            end;
+        end;
+    end);
+end)
+
+local SecondButton = RandomScriptPage.AddButton("Front", function()
+    pcall(function()
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                if v.Character:FindFirstChild('BodyEffects'):FindFirstChild('K.O') then
+                    for _, v in pairs(v.Character:GetChildren()) do
+                        if v:IsA('BasePart') then
+                            v.Velocity = Vector3.new(15,8,0);
+                        end
+                    end;
+                end;
+            end;
+        end;
+    end);
+end)
+
+local SecondButton = RandomScriptPage.AddButton("Front Harder", function()
+    pcall(function()
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                if v.Character:FindFirstChild('BodyEffects'):FindFirstChild('K.O') then
+                    for _, v in pairs(v.Character:GetChildren()) do
+                        if v:IsA('BasePart') then
+                            v.Velocity = Vector3.new(30,8,0);
+                        end
+                    end;
+                end;
+            end;
+        end;
+    end);
+end)
+
+local SecondButton = RandomScriptPage.AddButton("Back", function()
+    pcall(function()
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                if v.Character:FindFirstChild('BodyEffects'):FindFirstChild('K.O') then
+                    for _, v in pairs(v.Character:GetChildren()) do
+                        if v:IsA('BasePart') then
+                            v.Velocity = Vector3.new(-15,8,0);
+                        end
+                    end;
+                end;
+            end;
+        end;
+    end);
+end)
+
+local SecondButton = RandomScriptPage.AddButton("Back Harder", function()
+    pcall(function()
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                if v.Character:FindFirstChild('BodyEffects'):FindFirstChild('K.O') then
+                    for _, v in pairs(v.Character:GetChildren()) do
+                        if v:IsA('BasePart') then
+                            v.Velocity = Vector3.new(-30,8,0);
+                        end
+                    end;
+                end;
+            end;
+        end;
+    end);
+end)
+
+local SecondButton = RandomScriptPage.AddButton("Back Super Push", function()
+    pcall(function()
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                if v.Character:FindFirstChild('BodyEffects'):FindFirstChild('K.O') then
+                    for _, v in pairs(v.Character:GetChildren()) do
+                        if v:IsA('BasePart') then
+                            v.Velocity = Vector3.new(-70,15,0);
+                        end
+                    end;
+                end;
+            end;
+        end;
+    end);
+end)
+
+local SecondButton = RandomScriptPage.AddButton("Front Super Push", function()
+    pcall(function()
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                if v.Character:FindFirstChild('BodyEffects'):FindFirstChild('K.O') then
+                    for _, v in pairs(v.Character:GetChildren()) do
+                        if v:IsA('BasePart') then
+                            v.Velocity = Vector3.new(70,15,0);
+                        end
+                    end;
+                end;
+            end;
+        end;
+    end);
+end)
+
+local SecondButton = RandomScriptPage.AddButton("Left Super Push", function()
+    pcall(function()
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                if v.Character:FindFirstChild('BodyEffects'):FindFirstChild('K.O') then
+                    for _, v in pairs(v.Character:GetChildren()) do
+                        if v:IsA('BasePart') then
+                            v.Velocity = Vector3.new(0,15,-70);
+                        end
+                    end;
+                end;
+            end;
+        end;
+    end);
+end)
+local SecondButton = RandomScriptPage.AddButton("Right Super Push", function()
+    pcall(function()
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                if v.Character:FindFirstChild('BodyEffects'):FindFirstChild('K.O') then
+                    for _, v in pairs(v.Character:GetChildren()) do
+                        if v:IsA('BasePart') then
+                            v.Velocity = Vector3.new(0,15,70);
+                        end
+                    end;
+                end;
+            end;
+        end;
+    end);
+end)
+
+local SecondButton = RandomScriptPage.AddButton("Super Up", function()
+    pcall(function()
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                if v.Character:FindFirstChild('BodyEffects'):FindFirstChild('K.O') then
+                    for _, v in pairs(v.Character:GetChildren()) do
+                        if v:IsA('BasePart') then
+                            v.Velocity = Vector3.new(0,200,0);
+                        end
+                    end;
+                end;
+            end;
+        end;
+    end);
+end)
+
+local FirstToggle = RandomScriptPage.AddToggle("Freeze", false, function(fre)
+
+    if fre == true then
+        game:GetService('RunService'):BindToRenderStep("Freeze", 0 , function()
+        
+    pcall(function()
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                if v.Character:FindFirstChild('BodyEffects'):FindFirstChild('K.O') then
+                    for _, v in pairs(v.Character:GetChildren()) do
+                        if v:IsA('BasePart') then
+                            v.Velocity = Vector3.new(0,2.1,0);
+                        end
+                    end;
+                end;
+            end;
+        end;
+    end);
+end)
+
+    elseif fre == false then
+        game:GetService('RunService'):UnbindFromRenderStep("Freeze")
+    end
+end)
+
+local SecondButton = RandomScriptPage.AddButton("Despawn", function()
+    pcall(function()
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                if v.Character:FindFirstChild('BodyEffects'):FindFirstChild('K.O') then
+                    for _, v in pairs(v.Character:GetChildren()) do
+                        if v:IsA('BasePart') then
+                            v.Velocity = Vector3.new(500,500,500);
+                        end
+                    end;
+                end;
+            end;
+        end;
+    end);
+end)
