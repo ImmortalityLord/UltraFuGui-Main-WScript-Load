@@ -3035,7 +3035,21 @@ end)
         game:GetService('RunService'):UnbindFromRenderStep("Freeze")
     end
 end)
-
+local SecondButton = RandomScriptPage.AddButton("Super Stomp", function()
+    pcall(function()
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                if v.Character:FindFirstChild('BodyEffects'):FindFirstChild('K.O') then
+                    for _, v in pairs(v.Character:GetChildren()) do
+                        if v:IsA('BasePart') then
+                            v.Velocity = Vector3.new(-20,200,10);
+                        end
+                    end;
+                end;
+            end;
+        end;
+    end);
+end)
 local SecondButton = RandomScriptPage.AddButton("Despawn", function()
     pcall(function()
         for _, v in pairs(game:GetService('Players'):GetPlayers()) do
