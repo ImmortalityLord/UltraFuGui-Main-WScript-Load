@@ -1639,7 +1639,7 @@ local Animate = game.Players.LocalPlayer.Character.Animate
     Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=10921159222"
 
 end)
-
+local Update = FunstuffPage.AddLabel("Use Godv3 For AntiMute ur sounds. -Godv3 in Godstuff")
 local SecondButton = FunstuffPage.AddButton("Heart", function()
     game.Players.LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.Visible = true
     game.Players.LocalPlayer.PlayerGui:WaitForChild("MainScreenGui"):WaitForChild("Bar"):WaitForChild("HP"):WaitForChild("Picture"):WaitForChild("Life").Visible = true
